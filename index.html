@@ -13,17 +13,6 @@
   <link rel="stylesheet" href="layout.css">
 </head>
 <body>
-  <!-- شاشة التحميل -->
-  <div class="loader" id="loader">
-    <div class="loader-logo">
-     <img src="logo.png" alt="أكاديمية الفرقان" class="loader-img">
-    </div>
-    <div class="loader-text" lang-key="loading">جاري التحميل...</div>
-    <div class="progress-bar">
-      <div class="progress-fill" id="loader-progress"></div>
-    </div>
-  </div>
-
   <!-- شريط التقدم في الأعلى -->
   <div class="progress-top" id="progressTop"></div>
 
@@ -309,7 +298,6 @@
         شاهد هذا الفيديو للتعرف أكثر على منهجية التدريس وبيئة التعلم في أكاديمية الفرقان
       </p>
       <div class="video-container">
-      []
         <iframe 
           src="فيديو.mp4?autoplay=1&mute=1&loop=1&playlist=فيديو.mp4" 
           title="فيديو تعريفي عن أكاديمية الفرقان"
@@ -508,7 +496,7 @@
   </footer>
 
   <script>
-    // ترجمة المحتوى للغات المختلفة - تم تحديث الترجمة هنا
+    // ترجمة المحتوى للغات المختلفة
     const translations = {
       ar: {
         "loading": "جاري التحميل...",
@@ -753,9 +741,9 @@
         "teacher3-desc": "Enseignant spécialisé dans la mémorisation du Coran et la correction de la récitation, avec 12 ans d'expérience dans l'enseignement des communautés musulmanes.",
         "levels-title": "Niveaux d'apprentissage",
         "level1-title": "Débutant",
-        "level1-desc": "Apprendre les bases de la lecture correcte, les règles simples du Tajweed et la mémorisation des sourates courtes",
+        "level1-desc": "Apprendre les bases de la lecture correcte، les règles simples du Tajweed et la mémorisation des sourates courtes",
         "level2-title": "Intermédiaire",
-        "level2-desc": "Améliorer la récitation, apprendre les règles avancées du Tajweed et mémoriser des parties du Coran",
+        "level2-desc": "Améliorer la récitation، apprendre les règles avancées du Tajweed et mémoriser des parties du Coran",
         "level3-title": "Avancé",
         "level3-desc": "Maîtriser le Tajweed, étudier les Qira'at et compléter le projet de mémorisation du Coran",
         "level4-title": "Révision",
@@ -1035,37 +1023,16 @@
       });
     });
 
-    // شاشة التحميل
+    // تهيئة الموقع عند التحميل - بدون شاشة تحميل
     window.addEventListener('load', () => {
-      const loader = document.getElementById('loader');
-      const progressBar = document.getElementById('loader-progress');
+      // تشغيل الرسوم المتحركة للأقسام مباشرة
+      document.querySelectorAll('.section').forEach((section, index) => {
+        setTimeout(() => {
+          section.classList.add('animated');
+        }, index * 200);
+      });
       
-      // محاكاة التقدم
-      let progress = 0;
-      const interval = setInterval(() => {
-        progress += Math.random() * 10;
-        progressBar.style.width = Math.min(progress, 100) + '%';
-        
-        if (progress >= 100) {
-          clearInterval(interval);
-          setTimeout(() => {
-            loader.classList.add('hidden');
-            
-            // تشغيل الرسوم المتحركة للأقسام
-            document.querySelectorAll('.section').forEach(section => {
-              section.classList.add('animated');
-            });
-            
-            // التحقق مما إذا كان هناك فيديو
-            const videoIframe = document.querySelector('.video-container iframe');
-            if (videoIframe && videoIframe.src.includes('YOUR_VIDEO_ID')) {
-              document.querySelector('.video-placeholder').style.display = 'flex';
-            }
-          }, 500);
-        }
-      }, 200);
-      
-      // عداد الأرقام
+      // تشغيل عداد الأرقام مباشرة
       function animateCounter(id, target, duration) {
         const element = document.getElementById(id);
         let start = 0;
@@ -1082,12 +1049,13 @@
         }, 16);
       }
       
+      // تشغيل العدادات مع تأخير بسيط
       setTimeout(() => {
         animateCounter('students-counter', 2500, 2000);
         animateCounter('teachers-counter', 32, 1500);
         animateCounter('countries-counter', 45, 1800);
         animateCounter('satisfaction-counter', 95, 2200);
-      }, 1000);
+      }, 500);
     });
     
     // التنقل السلس
