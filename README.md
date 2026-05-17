@@ -1,1 +1,1 @@
-# EL-FURQAN
+# AL-FURQAN
