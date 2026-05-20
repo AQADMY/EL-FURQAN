@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://aqadmy.github.io/EL-FURQAN/sitemap.xml
